@@ -1,4 +1,5 @@
 import smbus
+import json
 
 def piReadSensorHuhData():
     DEVICE_BUS = 1
@@ -74,8 +75,9 @@ def piReadSensorHuhData():
         infraredMotionDetected=False
         #print("No humans detected!")
     print("MotionDetected: {}".format(infraredMotionDetected))
-    returnVal='"TempExternal":{}, "TempOnboard":{}, "Brightness":{}, "Humidity":{}, "BaroTemp":{}, "BaroPressure":{}, "MotioDetected":{}, "'.format(
+    jStr='{"TempExternal":{}, "TempOnboard":{}, "Brightness":{}, "Humidity":{}, "BaroTemp":{}, "BaroPressure":{}, "MotioDetected":{}, "}'.format(
         externalTemp, tempOnboard, brightnessVal, humidity, barometerTemp/100, barometerPressure, infraredMotionDetected)
+    returnVal = json.loads(jStr)
     return returnVal
 
 if __name__ == '__main__':
