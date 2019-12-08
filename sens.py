@@ -77,7 +77,7 @@ def piReadSensorHuhData():
     returnVal='"TempExternal":{}"TempOnboard":{}"Brightness":{}"Humidity":{}"BaroTemp":{}"BaroPressure":{}"MotioDetected":{}"'.format(
         externalTemp, tempOnboard, brightnessVal, humidity, barometerTemp, barometerPressure, infraredMotionDetected)
     return returnVal
-, 
+    
 if __name__ == '__main__':
     retVal = piReadSensorHuhData()
     print(retVal)
