@@ -78,8 +78,8 @@ def piReadSensorHuhData():
     jStr='{"TempExternal":{}, "TempOnboard":{}, "Brightness":{}, "Humidity":{}, "BaroTemp":{}, "BaroPressure":{}, "MotioDetected":{}"}'.format(
         externalTemp, tempOnboard, brightnessVal, humidity, barometerTemp/100, barometerPressure, infraredMotionDetected)
     print(jStr)
-    returnVal = json.loads(jStr)
-    return returnVal
+    #returnVal = json.loads(jStr)
+    return jStr
 
 if __name__ == '__main__':
     retVal = piReadSensorHuhData()
