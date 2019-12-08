@@ -38,7 +38,6 @@ def piReadSensorHuhData():
         print("TempSensor: {} Celcius".format(externalTemp))
         #print("Current off-chip sensor temperature = %d Celsius" % aReceiveBuf[TEMP_REG])
 
-
     if aReceiveBuf[STATUS_REG] & 0x04 :
         print("Onboard brightness sensor overrange!")
     elif aReceiveBuf[STATUS_REG] & 0x08 :
@@ -60,6 +59,7 @@ def piReadSensorHuhData():
 
     if aReceiveBuf[BMP280_STATUS] == 0 :
         barometerTemp = aReceiveBuf[BMP280_TEMP_REG]
+        print("Barometer Temp: {}".format(barometerTemp))
         #print("Current barometer temperature = %d Celsius" % aReceiveBuf[BMP280_TEMP_REG])
         barometerPressure = aReceiveBuf[BMP280_PRESSURE_REG_L] | aReceiveBuf[BMP280_PRESSURE_REG_M] << 8 |  aReceiveBuf[BMP280_PRESSURE_REG_H] << 16
         print("Barometric Pressure: {} mBarr".format(barometerPressure/100))
@@ -74,6 +74,10 @@ def piReadSensorHuhData():
         infraredMotionDetected=False
         #print("No humans detected!")
     print("MotionDetected: {}".format(infraredMotionDetected))
-
+    returnVal='"TempExternal":{}"TempOnboard":{}"Brightness":{}"Humidity":{}"BaroTemp":{}"BaroPressure":{}"MotioDetected":{}"'.format(
+        externalTemp, tempOnboard, brightnessVal, humidity, barometerTemp, barometerPressure, infraredMotionDetected)
+    return returnVal
+, 
 if __name__ == '__main__':
-    piReadSensorHuhData()
+    retVal = piReadSensorHuhData()
+    print(retVal)
