@@ -75,11 +75,11 @@ def piReadSensorHuhData():
         infraredMotionDetected=False
         #print("No humans detected!")
     print("MotionDetected: {}".format(infraredMotionDetected))
-    jStr='{"TempExternal":{}, "TempOnboard":{}, "Brightness":{}, "Humidity":{}, "BaroTemp":{}, "BaroPressure":{}, "MotioDetected":{}"}'.format(
+    jStr='\{"TempExternal":{}, "TempOnboard":{}, "Brightness":{}, "Humidity":{}, "BaroTemp":{}, "BaroPressure":{}, "MotioDetected":{}\}'.format(
         externalTemp, tempOnboard, brightnessVal, humidity, barometerTemp/100, barometerPressure, infraredMotionDetected)
     print(jStr)
-    #returnVal = json.loads(jStr)
-    return jStr
+    returnVal = json.loads(jStr)
+    return returnVal
 
 if __name__ == '__main__':
     retVal = piReadSensorHuhData()
