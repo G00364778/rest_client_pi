@@ -58,16 +58,18 @@ if aReceiveBuf[ON_BOARD_SENSOR_ERROR] != 0 :
     print("Onboard temperature and humidity sensor data may not be up to date!")
 
 if aReceiveBuf[BMP280_STATUS] == 0 :
-    
-    print("Current barometer temperature = %d Celsius" % aReceiveBuf[BMP280_TEMP_REG])
-    pressure = aReceiveBuf[BMP280_PRESSURE_REG_L] | aReceiveBuf[BMP280_PRESSURE_REG_M] << 8 |  aReceiveBuf[BMP280_PRESSURE_REG_H] << 16
-    print("Barometric Pressure: {} mBarr".format(pressure/100))
-    print("Current barometer pressure = %d pascal" % (aReceiveBuf[BMP280_PRESSURE_REG_L] | aReceiveBuf[BMP280_PRESSURE_REG_M] << 8 | aReceiveBuf[BMP280_PRESSURE_REG_H] << 16))
+    barometerTemp = aReceiveBuf[BMP280_TEMP_REG]
+    #print("Current barometer temperature = %d Celsius" % aReceiveBuf[BMP280_TEMP_REG])
+    barometerPressure = aReceiveBuf[BMP280_PRESSURE_REG_L] | aReceiveBuf[BMP280_PRESSURE_REG_M] << 8 |  aReceiveBuf[BMP280_PRESSURE_REG_H] << 16
+    print("Barometric Pressure: {} mBarr".format(barometerPressure/100))
+    #print("Current barometer pressure = %d pascal" % (aReceiveBuf[BMP280_PRESSURE_REG_L] | aReceiveBuf[BMP280_PRESSURE_REG_M] << 8 | aReceiveBuf[BMP280_PRESSURE_REG_H] << 16))
 else :
     print("Onboard barometer works abnormally!")
 
 if aReceiveBuf[HUMAN_DETECT] == 1 :
-    print("Live body detected within 5 seconds!")
+    infraredMotionDetected=True
+    #print("Live body detected within 5 seconds!")
 else:
-    print("No humans detected!")
-
+    infraredMotionDetected=False
+    #print("No humans detected!")
+print("MotionDetected: {}".format(infraredMotionDetected))
