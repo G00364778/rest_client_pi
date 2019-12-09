@@ -43,8 +43,10 @@ def piReadSensorHuhData():
 
     if aReceiveBuf[STATUS_REG] & 0x04 :
         print("Onboard brightness sensor overrange!")
+        brightnessVal=-1
     elif aReceiveBuf[STATUS_REG] & 0x08 :
         print("Onboard brightness sensor failure!")
+        brightnessVal=-2
     else :
         brightnessVal = aReceiveBuf[LIGHT_REG_H] << 8 | aReceiveBuf[LIGHT_REG_L]
         print("LightSensor: {} Lux".format(brightnessVal))
