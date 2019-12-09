@@ -78,11 +78,12 @@ def piReadSensorHuhData():
     print("MotionDetected: {}".format(infraredMotionDetected))
     jStr='{}"TempExternal":{}, "TempOnboard":{}, "Brightness":{}, "Humidity":{}, "BaroTemp":{}, "BaroPressure":{}, "MotionDetected":"{}"{}'.format(
         "{", externalTemp, tempOnboard, brightnessVal, humidity, barometerTemp, barometerPressure/100, infraredMotionDetected,"}")
-    print(jStr)
+    #print(jStr)
     returnVal = json.loads(jStr)
     return returnVal
 
 if __name__ == '__main__':
     retVal = piReadSensorHuhData()
+    json.dump('data.json')
     r = requests.post('http://jattie.pythonanywhere.com/pisense', data = retVal)
     print(retVal, r)
