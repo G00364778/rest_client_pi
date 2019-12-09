@@ -83,6 +83,7 @@ def piReadSensorHuhData():
     return returnVal
 
 if __name__ == '__main__':
+    print(datetime.datetime.now())
     retVal = piReadSensorHuhData()
     with open('data.json', 'w') as fp:
         json.dump(retVal, fp)
