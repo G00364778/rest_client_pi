@@ -84,5 +84,5 @@ def piReadSensorHuhData():
 
 if __name__ == '__main__':
     retVal = piReadSensorHuhData()
-    json.
-    print(retVal)
+    r = requests.post('http://jattie.pythonanywhere.com/pisense', data = retVal)
+    print(retVal, r)
