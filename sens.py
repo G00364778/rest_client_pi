@@ -87,4 +87,4 @@ if __name__ == '__main__':
     with open('data.json', 'w') as fp:
         json.dump(retVal, fp)
     r = requests.post('http://jattie.pythonanywhere.com/pisense', json = retVal)
-    print(retVal, r)
+    print(r.url, r)
